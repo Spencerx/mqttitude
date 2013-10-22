@@ -15,3 +15,7 @@ profile
 *.p12
 *.key
 *.pyc
+
+/contrib/hivemq-storage-plugin/.idea/
+
+/contrib/hivemq-storage-plugin/hivemq-storage-plugin.iml
