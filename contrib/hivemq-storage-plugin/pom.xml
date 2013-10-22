@@ -25,6 +25,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.25</version>
         </dependency>
+        <dependency>
+            <groupId>com.googlecode.flyway</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>2.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -82,7 +87,7 @@
                                     <goal>hivemq</goal>
                                 </goals>
                                 <configuration>
-                                    <hiveMQDir>/Applications/hivemq-dev</hiveMQDir>
+                                    <hiveMQDir>/Users/dobermai/Downloads/hivemq-1.4.1</hiveMQDir>
                                 </configuration>
                             </execution>
                         </executions>
