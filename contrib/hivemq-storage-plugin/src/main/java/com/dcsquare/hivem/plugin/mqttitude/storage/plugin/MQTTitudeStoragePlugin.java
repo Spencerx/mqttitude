@@ -1,7 +1,7 @@
 package com.dcsquare.hivem.plugin.mqttitude.storage.plugin;
 
-import com.dcsquare.hivem.plugin.mqttitude.storage.callbacks.HiveMQStart;
 import com.dcsquare.hivem.plugin.mqttitude.storage.callbacks.PublishReceived;
+import com.dcsquare.hivem.plugin.mqttitude.storage.callbacks.SQLStartupCheck;
 import com.dcsquare.hivemq.spi.PluginEntryPoint;
 import com.dcsquare.hivemq.spi.callback.registry.CallbackRegistry;
 import org.slf4j.Logger;
@@ -14,11 +14,14 @@ public class MQTTitudeStoragePlugin extends PluginEntryPoint {
 
     private static final Logger log = LoggerFactory.getLogger(MQTTitudeStoragePlugin.class);
     private final PublishReceived publishReceived;
+    private final SQLStartupCheck sqlStartupCheck;
 
 
     @Inject
-    public MQTTitudeStoragePlugin(PublishReceived publishReceived) {
+    public MQTTitudeStoragePlugin(final PublishReceived publishReceived,
+                                  final SQLStartupCheck sqlStartupCheck) {
         this.publishReceived = publishReceived;
+        this.sqlStartupCheck = sqlStartupCheck;
     }
 
     @PostConstruct
@@ -26,8 +29,7 @@ public class MQTTitudeStoragePlugin extends PluginEntryPoint {
 
         final CallbackRegistry callbackRegistry = getCallbackRegistry();
 
-        callbackRegistry.addCallback(new HiveMQStart());
+        callbackRegistry.addCallback(sqlStartupCheck);
         callbackRegistry.addCallback(publishReceived);
-
     }
 }
